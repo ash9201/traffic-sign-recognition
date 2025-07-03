@@ -5,17 +5,18 @@ A deep‑learning project that fine‑tunes a ResNet‑18 to classify 43 German 
 ## Features
 
 - **Data Prep**: (`scripts/preprocess.py`)
+  - Raw test and train images present at `data/raw`
   - Resizes 39,209 training and 12,630 test images to 64×64 
   - Organizes into `data/processed/train/<class_id>/` and `data/processed/test/<class_id>/`  
 
 - **Model**:
   - Fine‑tuned **ResNet‑18** with ImageNet weights  
   - Color jitter, random rotations, affine transforms  
-  - final trained weights at `models/traffic_resnet18.pth`
+  - Saved weights: `models/traffic_resnet18.pth`
  
 - **Training**: (`scripts/train.py`)
   - 10 epochs, Adam optimizer, LR scheduler  
-  - Validation split (80/20) to prevent overfitting  
+  - 80/20 train/validation split
 
 - **Visualization**: (`plots.ipynb`)
   - Loss & accuracy curves   
@@ -25,7 +26,7 @@ A deep‑learning project that fine‑tunes a ResNet‑18 to classify 43 German 
   - **Streamlit** interface for real‑time prediction from any uploaded image  
   - Displays human‑readable sign names
 
-## Reuslts
+## Results
 - **Final Test Accuracy:** 95.71%  
 - **Validation Accuracy:** up to 98.41%  
 - **Confusion Matrix:**  
@@ -35,5 +36,10 @@ A deep‑learning project that fine‑tunes a ResNet‑18 to classify 43 German 
 ```bash
 git clone https://github.com/ash9201/traffic‑sign‑recognition.git
 cd traffic-sign-recognition
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
 pip install -r requirements.txt
 streamlit run app/demo.py
